@@ -3,9 +3,17 @@ kind: Deployment
 metadata:
   name: myapp
 spec:
-  replicas: 2
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp               
   template:
+    metadata:
+      labels:
+        app: myapp           
     spec:
       containers:
         - name: myapp
-          image: nginx:1.21-dev
+          image: nginx
+          ports:
+            - containerPort: 80
